@@ -1,0 +1,72 @@
+\documentclass[a4paper]{article}
+
+\title{Validity in distributive $\ell$-monoids}
+\author{As explained by Simon Santschi}
+\date{8. November 2021}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\DeclareMathOperator{\is}{\text{is}}
+\DeclareMathOperator{\fail}{\mathsf{fail}}
+\DeclareMathOperator{\DLM}{\mathsf{DLM}}
+\DeclareMathOperator{\bd}{\mathsf{bd}}
+
+\begin{document}
+\maketitle
+
+Details can be found in~\cite{backagain}.
+For a formula
+\[
+  \bigwedge_{i} s_i \leq \bigvee_j t_j
+\]
+consider the set $\is(s_1, \dots, s_n, t_1, \dots, t_m)$ 
+of initial subterms of the $s_i$ and $t_j$ (including the empty term corresponding to the identity).
+Let
+\[
+  \Sigma =
+  \left\{u \leq v \Rightarrow ux \leq vx \mid ux \neq vx \in 
+  \is(s_1, \dots, s_n, t_1, \dots, t_m)\right\}.
+\]
+Then we have $|\Sigma| \leq N(N-1)$ where $N = |\is(s_1, \dots, s_n, t_1, \dots, t_m)|$.
+Moreover, define
+\[
+  \fail =
+  \left\{s_i > t_j \mid i = 1, \dots, n, j = 1, \dots, m\right\}.
+\]
+Then ask Z3 whether $\Sigma \cup \fail$ is satisfiable in $\langle \mathbb N, \leq, \rangle$ since
+this is equivalent to
+\[
+  % \langle \mathbb N, \leq \rangle \models \Sigma \cup \fail \Leftrightarrow
+  \DLM \not\models 
+  \bigwedge_{i} s_i \leq \bigvee_j t_j.
+\]
+As a possible optimization, consider $\Sigma \cup \fail \cup \bd$
+instead, where
+\[
+   \bd = \left\{u \leq |\is(s_1, \dots, s_n, t_1, \dots, t_m)| \mid 
+   u \in \is(s_1, \dots, s_n, t_1, \dots, t_m)\right\}.
+\]
+This might actually make it slower, though.
+
+
+
+\bibliographystyle{amsplain}
+\bibliography{biblio}
+
+
+\end{document}
