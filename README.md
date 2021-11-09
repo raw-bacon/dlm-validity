@@ -50,8 +50,8 @@ encoding a counterexample to the inequation `xyx <= yxy`.
 
 # Conventions
 Variables are single case-sensitive characters
-like `x`, `X`, or `@`.
+like `"x"`, `"X"`, or `"@"`.
 Although this gives an upper bound on the number of variables
 a formula may contain, this should not be an issue.
-The empty string stands for the identity element.
+The empty string `""` stands for the identity element.
 
