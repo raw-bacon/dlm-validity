@@ -38,5 +38,6 @@ def fail(terms1, terms2):
     return fail
 
 def check(terms1, terms2):
-    return solve(sigma(terms1.union(terms2)).union(fail(terms1, terms2)))
+    return solve(sigma(initial_subterms(terms1.union(terms2)))
+            .union(fail(terms1, terms2)))
 
