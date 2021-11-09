@@ -1,5 +1,10 @@
 # dlm-validity
-A scipt using [Z3](https://github.com/Z3Prover/z3) to check validity of distributive l-monoid formulas
+This is a script using [Z3](https://github.com/Z3Prover/z3) to check 
+validity of distributive l-monoid formulas. 
+The script implements an algorithm described by
+Almudena Colacito, Nikolaos Galatos, George Metcalfe, and Simon Santschi
+in the article 
+[From distributive l-monoids to l-groups, and back again](https://arxiv.org/abs/2103.00146).
 
 # Setup
 This might only work for Linux, probably also for OSX, probably not for Windows.
