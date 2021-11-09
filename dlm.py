@@ -1,4 +1,4 @@
-from z3 import Int, Implies
+from z3 import Int, Implies, solve
 
 # the set of initial subterms of a set of monoid terms
 def initial_subterms(terms):
@@ -15,8 +15,7 @@ def initial_subterms(terms):
 # is now `u[:-1]`, and what is `ux` is now `u`
 def sigma(terms):
     sig = set()
-    # would use `pairwise`, but this is 3.10
-    # for u, v in pairwise(terms):
+    # this iteration could be optimised
     for u in terms:
         for v in terms:
             if u == '' or v == '' or u == v:
@@ -31,10 +30,13 @@ def sigma(terms):
 # if this is satisfiable together with sigma,
 # then the equation Meet(terms1) <= Join(terms2)
 # is not valid.
-def fail(terms1, terms2)
+def fail(terms1, terms2):
     fail = set()
     for s in terms1:
         for t in terms2:
             fail.add(Int(s) > Int(t))
     return fail
+
+def check(terms1, terms2):
+    return solve(sigma(terms1.union(terms2)).union(fail(terms1, terms2)))
 
