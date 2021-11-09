@@ -22,7 +22,7 @@ def sigma(terms):
                 pass
             elif u[-1] == v[-1]:
                 sig.add(Implies(Int(u[:-1]) <= Int(v[:-1]), 
-                                   Int(u) <= Int(v)))
+                                Int(u) <= Int(v)))
     return sig
 
 # the set of inequations s > t for
@@ -39,5 +39,6 @@ def fail(terms1, terms2):
 
 def check(terms1, terms2):
     return solve(sigma(initial_subterms(terms1.union(terms2)))
-            .union(fail(terms1, terms2)))
+                    .union(fail(terms1, terms2))
+    )
 
